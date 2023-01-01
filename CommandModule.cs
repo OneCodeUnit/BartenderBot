@@ -10,6 +10,7 @@ namespace BartenderBot
     {
         private readonly string[] beer = { "Листолюбское особое", "Жирный олух", "Крушитель глифидов", "Аркенстаут", "Усладу Камнестрела", "Андерхилл делюкс", "Сногсшибающий стаут" };
         private readonly ulong bar = 1056273877719851008;
+        //private readonly ulong bar = 1056561551638802513; //test
 
         [Command("налей")]
         public async Task BeerCommand(CommandContext ctx)
@@ -18,7 +19,6 @@ namespace BartenderBot
             {
                 string author = ctx.Message.Author.Mention;
                 Random random = new();
-                Console.WriteLine(beer.Length);
                 int order = random.Next(beer.Length);
                 if (order == 0)
                 {
@@ -37,7 +37,6 @@ namespace BartenderBot
             {
                 string author = ctx.Message.Author.Mention;
                 Random random = new();
-                Console.WriteLine(beer.Length);
                 int order = random.Next(beer.Length);
                 if (order == 0)
                 {

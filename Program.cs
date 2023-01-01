@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
@@ -17,8 +16,8 @@ namespace BartenderBot
         {
             DiscordConfiguration config = new();
             config.Token = System.IO.File.ReadAllText("token.txt");
-            config.MinimumLogLevel = Microsoft.Extensions.Logging.LogLevel.Debug;
-            config.Intents = DiscordIntents.All;
+            config.MinimumLogLevel = Microsoft.Extensions.Logging.LogLevel.Information;
+            config.Intents = DiscordIntents.MessageContents | DiscordIntents.GuildMessages | DiscordIntents.Guilds;
             DiscordClient discord = new(config);
 
             CommandsNextConfiguration commandsConfig = new();
@@ -28,7 +27,6 @@ namespace BartenderBot
             commands.RegisterCommands<CommandModule>();
 
             await discord.ConnectAsync();
-
             await Task.Delay(Timeout.Infinite);
         }
     }
