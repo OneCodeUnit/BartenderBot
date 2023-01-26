@@ -1,8 +1,8 @@
-﻿using DSharpPlus.CommandsNext;
+﻿using System;
+using System.Threading.Tasks;
+using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
-using System;
-using System.Threading.Tasks;
 
 namespace BartenderBot
 {
@@ -72,6 +72,33 @@ namespace BartenderBot
                 {
                     answer += author + " заказывает " + beer[order] + " и всё выпивает сам.";
                 }
+                await ctx.RespondAsync(answer);
+            }
+        }
+        [Command("играть")]
+        public async Task CallCommand(CommandContext ctx)
+        {
+            if (ctx.Channel.Id == bar)
+            {
+                string answer = "@Дворф, пора в шахту!";
+                await ctx.RespondAsync(answer);
+            }
+        }
+        [Command("играть")]
+        public async Task CallCommand(CommandContext ctx, DiscordUser target)
+        {
+            if (ctx.Channel.Id == bar)
+            {
+                string answer = target.Mention +", пора в шахту!";
+                await ctx.RespondAsync(answer);
+            }
+        }
+        [Command("играть")]
+        public async Task CallCommand(CommandContext ctx, string target)
+        {
+            if (ctx.Channel.Id == bar)
+            {
+                string answer = ctx.Message.Author.Mention + " хочет позвать кого-то в шахту, но слишком пьян! Говорит что-то про " + target;
                 await ctx.RespondAsync(answer);
             }
         }
