@@ -10,7 +10,9 @@ namespace BartenderBot
     {
         private readonly string[] beer = { "Листолюбское особое", "Жирный олух", "Крушитель глифидов", "Аркенстаут", "Усладу Камнестрела", "Андерхилл делюкс", "Сногсшибающий стаут" };
         private readonly ulong bar = Convert.ToUInt64(System.IO.File.ReadAllText("bar.txt"));
-        
+        //private readonly ulong bar = Convert.ToUInt64(1056561551638802513);
+        private readonly ulong dwarfrole = Convert.ToUInt64(System.IO.File.ReadAllText("game.txt"));
+
         [Command("налей")]
         public async Task BeerCommand(CommandContext ctx)
         {
@@ -80,7 +82,7 @@ namespace BartenderBot
         {
             if (ctx.Channel.Id == bar)
             {
-                string answer = "@Дворф, пора в шахту!";
+                string answer = ctx.Guild.GetRole(dwarfrole).Mention + ", пора в шахту!";
                 await ctx.RespondAsync(answer);
             }
         }
